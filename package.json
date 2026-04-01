@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/css/shared.css -o ./assets/css/output.css --watch"
+  },
   "dependencies": {
     "@tailwindcss/cli": "^4.2.2",
     "tailwindcss": "^4.2.2"
