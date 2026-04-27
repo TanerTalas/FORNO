@@ -1,1 +1,47 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Bagel Fat One", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-accent: "Caveat", cursive;
+
+  --text-display-sm: 4rem;
+  --text-display-md: 6rem;
+  --text-display-lg: 9rem;
+  --text-display-xl: 12rem;
+
+  --color-bg: #0F0A08;
+  --color-bg-elevated: #1A1109;
+  --color-surface: #241712;
+
+  --color-ember: #D63A1F;
+  --color-ember-hover: #E84A2D;
+  --color-mustard: #E8A33D;
+  --color-mustard-bright: #F2B847;
+
+  --color-cream: #F5EDDF;
+  --color-cream-muted: #A89B8A;
+
+  --color-charcoal: #3A2820;
+  --color-glow: #FF5733;
+  --color-soot: #000000;
+  --color-success: #7BA05B;
+  --color-error: #C8412B;
+
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-ambient: 1500ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "dev": "tailwindcss -i ./assets/css/shared.css -o ./assets/css/output.css --watch"
+    "dev": "tailwindcss -i ./assets/css/shared.css -o ./assets/css/output.css --watch",
+    "build": "tailwindcss -i ./assets/css/shared.css -o ./assets/css/output.css --minify"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.2.2",
+    "gsap": "^3.15.0",
     "tailwindcss": "^4.2.2"
   }
 }

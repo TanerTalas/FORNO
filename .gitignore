@@ -417,6 +417,19 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# npm / yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
+
 # Claude Code
 claude.md
 todo.md
