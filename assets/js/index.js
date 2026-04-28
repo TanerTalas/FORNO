@@ -89,8 +89,63 @@ function setupHeroScrollFade() {
   }
 }
 
+const PIZZA_CONFIG = {
+  hold: 3.0,
+  fadeIn: 0.4,
+  fadeOut: 0.4,
+  spinDuration: 18,
+};
+
+function setupPizzaCarousel(config = PIZZA_CONFIG) {
+  const stage = document.querySelector("[data-pizza-stage]");
+  const label = document.querySelector("[data-pizza-label]");
+  if (!stage || !label || typeof gsap === "undefined") return;
+
+  const pizzas = Array.from(stage.querySelectorAll("[data-pizza]"));
+  if (pizzas.length === 0) return;
+
+  const { hold, fadeIn, fadeOut, spinDuration } = config;
+
+  pizzas.forEach((pizza) => {
+    gsap.set(pizza, { opacity: 0, scale: 0.92, rotation: 0 });
+    gsap.to(pizza, {
+      rotation: 360,
+      duration: spinDuration,
+      ease: "none",
+      repeat: -1,
+    });
+  });
+
+  if (pizzas.length === 1) {
+    gsap.set(pizzas[0], { opacity: 1, scale: 1 });
+    label.textContent = pizzas[0].dataset.pizzaName || "";
+    return;
+  }
+
+  const tl = gsap.timeline({ repeat: -1 });
+
+  pizzas.forEach((pizza, i) => {
+    const name = pizza.dataset.pizzaName || "";
+    tl.to(pizza, {
+      opacity: 1,
+      scale: 1,
+      duration: fadeIn,
+      ease: "power3.out",
+      onStart: () => { label.textContent = name; },
+    })
+      .to({}, { duration: hold })
+      .to(pizza, {
+        opacity: 0,
+        scale: 0.92,
+        duration: fadeOut,
+        ease: "power3.in",
+      });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupHeroVideo();
   setupHeroIntro();
   setupHeroScrollFade();
+  setupPizzaCarousel();
 });
