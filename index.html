@@ -24,13 +24,55 @@
   <script src="components/forno-nav.js" defer></script>
   <script src="components/forno-footer.js" defer></script>
   <script src="components/forno-testimonial.js" defer></script>
+  <script src="components/forno-book-modal.js" defer></script>
   <script src="assets/js/index.js" defer></script>
 </head>
 <body class="bg-bg text-cream font-body">
   <forno-nav></forno-nav>
 
-  <main></main>
+  <main>
+    <section id="hero" class="relative h-[100svh] min-h-[560px] w-full overflow-hidden">
+      <video
+        data-hero-video
+        class="absolute inset-0 hidden h-full w-full object-cover md:block"
+        autoplay muted loop playsinline preload="metadata"
+        width="1920" height="1080"
+        poster="assets/img/hero/hero-fallback.jpg"
+        aria-hidden="true"
+      >
+        <source src="assets/img/hero/hero-video.webm" type="video/webm">
+        <source src="assets/img/hero/hero-video.mp4" type="video/mp4">
+      </video>
+
+      <picture class="md:hidden">
+        <source srcset="assets/img/hero/hero-fallback.webp" type="image/webp">
+        <img
+          src="assets/img/hero/hero-fallback.jpg"
+          alt=""
+          width="1920" height="1080"
+          class="absolute inset-0 h-full w-full object-cover"
+        >
+      </picture>
+
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg/70 via-transparent to-bg/20"></div>
+
+      <div class="relative z-10 flex h-full items-end">
+        <div class="mx-auto w-full max-w-[1280px] px-5 pb-16 md:px-8 md:pb-20 lg:px-12 lg:pb-24 xl:px-16">
+          <p class="font-accent text-2xl text-mustard md:text-3xl">Wood-fired since day one</p>
+          <h1 class="mt-2 font-display leading-[0.9] text-cream" style="font-size: clamp(3.5rem, 12vw, 9rem);">
+            FORNO
+          </h1>
+          <p class="mt-4 max-w-md font-body text-sm text-cream/85 md:text-base">
+            Hand-stretched dough, scorched in oak. Walk in hungry, leave with a story.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <forno-footer></forno-footer>
+
+  <forno-book-modal></forno-book-modal>
 </body>
 </html>
