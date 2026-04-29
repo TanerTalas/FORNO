@@ -45,3 +45,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+#detach-button-host {
+  visibility: hidden;
+}
