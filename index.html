@@ -241,6 +241,100 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
+    <section id="contact" class="relative bg-bg">
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="contact-map relative">
+          <iframe
+            title="FORNO location on map"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0080%2C40.7080%2C-73.9920%2C40.7180&layer=mapnik&marker=40.7130%2C-74.0000"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="px-5 py-16 md:px-10 md:py-20 lg:px-14 lg:py-24">
+          <p class="font-accent text-2xl text-mustard md:text-3xl">Drop in</p>
+          <h2 class="mt-2 font-display leading-[0.95] text-cream" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            Contact us
+          </h2>
+
+          <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
+            <div>
+              <p class="font-body text-xs uppercase tracking-[0.18em] text-cream-muted">Address</p>
+              <p class="mt-2 font-body text-base text-cream">
+                412 Hudson Street<br>
+                New York, NY 10014
+              </p>
+            </div>
+            <div>
+              <p class="font-body text-xs uppercase tracking-[0.18em] text-cream-muted">Reach us</p>
+              <p class="mt-2 font-body text-base text-cream">
+                <a href="tel:+12125550199" class="transition-colors duration-fast hover:text-mustard">+1 (212) 555-0199</a><br>
+                <a href="mailto:hi@forno.pizza" class="transition-colors duration-fast hover:text-mustard">hi@forno.pizza</a>
+              </p>
+            </div>
+          </div>
+
+          <form data-contact-form class="mt-12" novalidate>
+            <div class="grid grid-cols-1 gap-5">
+              <div>
+                <label for="contact-name" class="sr-only">Name</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                  class="contact-input"
+                >
+              </div>
+
+              <div>
+                <label for="contact-email" class="sr-only">Email</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="Email"
+                  class="contact-input"
+                >
+              </div>
+
+              <div>
+                <label for="contact-message" class="sr-only">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows="6"
+                  placeholder="What's on your mind?"
+                  class="contact-input contact-textarea"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="mt-6 flex items-center gap-4">
+              <button
+                type="submit"
+                class="inline-flex items-center gap-2 rounded-full bg-ember px-7 py-3 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <span data-contact-submit-label>Send</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 5l7 7-7 7"/>
+                </svg>
+              </button>
+
+              <p data-contact-status role="status" aria-live="polite" class="font-body text-sm text-cream-muted"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <forno-footer></forno-footer>

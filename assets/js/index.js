@@ -194,10 +194,70 @@ function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
   }, { passive: true });
 }
 
+function setupContactForm() {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
+
+  const status = form.querySelector("[data-contact-status]");
+  const submitLabel = form.querySelector("[data-contact-submit-label]");
+  const submitButton = form.querySelector("button[type='submit']");
+
+  const setStatus = (message, tone = "muted") => {
+    if (!status) return;
+    status.textContent = message;
+    status.classList.remove("text-cream-muted", "text-success", "text-error");
+    if (tone === "success") status.classList.add("text-success");
+    else if (tone === "error") status.classList.add("text-error");
+    else status.classList.add("text-cream-muted");
+  };
+
+  const fields = Array.from(form.querySelectorAll(".contact-input"));
+
+  fields.forEach((field) => {
+    field.addEventListener("input", () => {
+      if (field.getAttribute("aria-invalid") === "true" && field.checkValidity()) {
+        field.removeAttribute("aria-invalid");
+      }
+    });
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let firstInvalid = null;
+    fields.forEach((field) => {
+      if (!field.checkValidity()) {
+        field.setAttribute("aria-invalid", "true");
+        if (!firstInvalid) firstInvalid = field;
+      } else {
+        field.removeAttribute("aria-invalid");
+      }
+    });
+
+    if (firstInvalid) {
+      firstInvalid.focus();
+      setStatus("Check the highlighted fields and try again.", "error");
+      return;
+    }
+
+    if (submitButton) submitButton.disabled = true;
+    if (submitLabel) submitLabel.textContent = "Sending";
+    setStatus("");
+
+    setTimeout(() => {
+      if (submitButton) submitButton.disabled = false;
+      if (submitLabel) submitLabel.textContent = "Send";
+      setStatus("Thanks — we'll get back to you soon.", "success");
+      form.reset();
+    }, 600);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupHeroVideo();
   setupHeroIntro();
   setupHeroScrollFade();
   setupPizzaCarousel();
   setupTestimonialsMarquee();
+  setupContactForm();
 });
