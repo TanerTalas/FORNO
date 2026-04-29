@@ -9,7 +9,7 @@ class FornoNav extends HTMLElement {
     const linkActive = "text-cream";
 
     this.innerHTML = `
-      <header class="fixed inset-x-0 top-0 z-50 transition-colors duration-normal" data-nav-root>
+      <header class="fixed inset-x-0 top-0 z-50 border-charcoal transition-colors duration-normal" data-nav-root>
         <div class="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 md:px-8 md:py-5 lg:px-12">
           <a href="index.html" class="flex items-center gap-3" aria-label="FORNO — home">
             <img src="assets/img/logo/logo.svg" alt="FORNO" width="120" height="28" class="h-7 w-auto md:h-8">
@@ -84,9 +84,9 @@ class FornoNav extends HTMLElement {
 
     const onScroll = () => {
       if (window.scrollY > 12) {
-        root.classList.add("bg-bg/85", "backdrop-blur", "border-b", "border-charcoal");
+        root.classList.add("bg-bg/85", "backdrop-blur", "border-b");
       } else {
-        root.classList.remove("bg-bg/85", "backdrop-blur", "border-b", "border-charcoal");
+        root.classList.remove("bg-bg/85", "backdrop-blur", "border-b");
       }
     };
     onScroll();
