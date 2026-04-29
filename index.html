@@ -33,6 +33,7 @@
   <forno-nav></forno-nav>
 
   <main>
+    <!-- HERO -->
     <section id="hero" class="relative h-[100svh] min-h-[560px] w-full overflow-hidden">
       <video
         data-hero-video
@@ -72,6 +73,7 @@
       </div>
     </section>
 
+    <!-- PIZZAS -->
     <section id="pizzas" class="relative overflow-hidden bg-bg py-24 md:py-32">
       <div class="mx-auto max-w-[1280px] px-5 text-center md:px-8 lg:px-12 xl:px-16">
         <p class="font-accent text-2xl text-mustard md:text-3xl">Straight from the fire</p>
@@ -121,6 +123,7 @@
       </div>
     </section>
 
+    <!-- CHEFS -->
     <section id="chefs" class="chef-section relative overflow-hidden bg-bg py-24 md:py-32">
       <div class="chef-fire" aria-hidden="true">
         <span class="chef-fire-glow"></span>
@@ -176,6 +179,7 @@
       </div>
     </section>
 
+    <!-- MENU CTA -->
     <section id="menu-cta" class="relative bg-bg py-24 md:py-32">
       <div class="mx-auto max-w-[1280px] px-5 text-center md:px-8 lg:px-12 xl:px-16">
         <p class="font-accent text-2xl text-mustard md:text-3xl">The full lineup</p>
@@ -196,6 +200,47 @@
         </a>
       </div>
     </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="testimonials relative overflow-hidden bg-bg py-24 md:py-32">
+      <div class="mx-auto max-w-[1280px] px-5 text-center md:px-8 lg:px-12 xl:px-16">
+        <p class="font-accent text-2xl text-mustard md:text-3xl">From the booth</p>
+        <h2 class="mt-2 font-display leading-[0.95] text-cream" style="font-size: clamp(2.5rem, 7vw, 6rem);">
+          What folks say
+        </h2>
+      </div>
+
+      <div class="testimonials-viewport mt-12 md:mt-16">
+        <div data-testimonials-track class="testimonials-track flex w-max gap-5 will-change-transform md:gap-6">
+          <forno-testimonial
+            quote="Crust like a postcard from Naples and a room that actually feels lived-in. We came for one slice and stayed for three."
+            name="Joelle Park"
+            avatar="assets/img/testimonials/avatar-1.jpg"
+          ></forno-testimonial>
+          <forno-testimonial
+            quote="The Margherita ruined every other Margherita for me. I'm fine with that."
+            name="Devon Marsh"
+            avatar="assets/img/testimonials/avatar-2.jpg"
+          ></forno-testimonial>
+          <forno-testimonial
+            quote="No fuss, no fake nostalgia. Just a hot oven, good music, and pizza you remember the next day."
+            name="Sasha Greene"
+            avatar="assets/img/testimonials/avatar-3.jpg"
+          ></forno-testimonial>
+          <forno-testimonial
+            quote="Booked for two, ended up sharing a table with strangers and a pepperoni. That's the place in a sentence."
+            name="Marcus Lin"
+            avatar="assets/img/testimonials/avatar-4.jpg"
+          ></forno-testimonial>
+          <forno-testimonial
+            quote="The kind of spot you start describing to friends and realize you're already planning to go back."
+            name="Priya Anand"
+            avatar="assets/img/testimonials/avatar-5.jpg"
+          ></forno-testimonial>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <forno-footer></forno-footer>

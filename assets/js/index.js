@@ -143,9 +143,61 @@ function setupPizzaCarousel(config = PIZZA_CONFIG) {
   });
 }
 
+const TESTIMONIALS_CONFIG = {
+  speed: 60,
+};
+
+function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
+  const track = document.querySelector("[data-testimonials-track]");
+  if (!track || typeof gsap === "undefined") return;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  const originals = Array.from(track.children);
+  if (originals.length === 0) return;
+
+  originals.forEach((node) => {
+    const clone = node.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
+  });
+
+  let tween;
+
+  const start = () => {
+    if (tween) tween.kill();
+    gsap.set(track, { x: 0 });
+
+    const distance = track.scrollWidth / 2;
+    if (distance <= 0) return;
+
+    const duration = distance / config.speed;
+    tween = gsap.to(track, {
+      x: -distance,
+      duration,
+      ease: "none",
+      repeat: -1,
+    });
+  };
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(start);
+  } else {
+    start();
+  }
+
+  let resizeId;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeId);
+    resizeId = setTimeout(start, 200);
+  }, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupHeroVideo();
   setupHeroIntro();
   setupHeroScrollFade();
   setupPizzaCarousel();
+  setupTestimonialsMarquee();
 });
