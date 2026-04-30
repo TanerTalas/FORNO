@@ -97,6 +97,7 @@ class FornoBookModal extends HTMLElement {
       }));
       this.close();
       this.form.reset();
+      this.#showToast("Reservation confirmed! See you at FORNO.");
     });
 
     document.addEventListener("forno:book-open", () => this.open());
@@ -129,6 +130,56 @@ class FornoBookModal extends HTMLElement {
       if (val === prev) opt.selected = true;
       timeSelect.appendChild(opt);
     }
+  }
+
+  #showToast(message) {
+    const toast = document.createElement("div");
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    toast.style.cssText = [
+      "position:fixed",
+      "top:0",
+      "left:50%",
+      "transform:translate(-50%,-100%)",
+      "z-index:9999",
+      "display:flex",
+      "align-items:center",
+      "gap:10px",
+      "padding:14px 20px",
+      "background:#1A1109",
+      "border:1px solid #3A2820",
+      "border-top:none",
+      "border-radius:0 0 12px 12px",
+      "font-family:Inter,system-ui,sans-serif",
+      "font-size:14px",
+      "font-weight:500",
+      "color:#F5EDDF",
+      "box-shadow:0 8px 24px rgba(0,0,0,0.5)",
+      "transition:transform 400ms cubic-bezier(0.16,1,0.3,1)",
+    ].join(";");
+
+    toast.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7BA05B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      ${message}
+    `;
+
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        toast.style.transform = "translate(-50%, 0)";
+      });
+    });
+
+    const hide = () => {
+      toast.style.transition = "transform 300ms cubic-bezier(0.7,0,0.84,0)";
+      toast.style.transform = "translate(-50%, -100%)";
+      toast.addEventListener("transitionend", () => toast.remove(), { once: true });
+    };
+
+    setTimeout(hide, 3500);
   }
 
   open() {

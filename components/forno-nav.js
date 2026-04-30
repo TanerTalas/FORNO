@@ -33,10 +33,13 @@ class FornoNav extends HTMLElement {
               aria-expanded="false"
               aria-controls="forno-mobile-menu"
               aria-label="Open menu"
-              class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal text-cream"
+              class="cursor-pointer md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal text-cream"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <svg data-icon-burger width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="transition:opacity 200ms,transform 200ms">
                 <path d="M3 6h18M3 12h18M3 18h18"/>
+              </svg>
+              <svg data-icon-close width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;transition:opacity 200ms,transform 200ms;opacity:0;transform:rotate(-90deg)">
+                <path d="M18 6L6 18M6 6l12 12"/>
               </svg>
             </button>
           </div>
@@ -49,8 +52,8 @@ class FornoNav extends HTMLElement {
           class="md:hidden border-t border-charcoal bg-bg-elevated"
         >
           <nav class="mx-auto flex max-w-[1280px] flex-col px-5 py-4" aria-label="Mobile">
-            <a href="index.html" class="py-3 ${linkBase} ${isHome ? linkActive : linkIdle}">Home</a>
-            <a href="menu.html" class="py-3 ${linkBase} ${isMenu ? linkActive : linkIdle}">Menu</a>
+            <a href="index.html" class="cursor-pointer py-3 ${linkBase} ${isHome ? linkActive : linkIdle}">Home</a>
+            <a href="menu.html" class="cursor-pointer py-3 ${linkBase} ${isMenu ? linkActive : linkIdle}">Menu</a>
           </nav>
         </div>
       </header>
@@ -64,6 +67,8 @@ class FornoNav extends HTMLElement {
     const bookBtn = this.querySelector("[data-book-trigger]");
     const menuBtn = this.querySelector("[data-menu-toggle]");
     const mobileMenu = this.querySelector("[data-mobile-menu]");
+    const iconBurger = menuBtn.querySelector("[data-icon-burger]");
+    const iconClose = menuBtn.querySelector("[data-icon-close]");
 
     bookBtn.addEventListener("click", () => {
       this.dispatchEvent(new CustomEvent("forno:book-open", { bubbles: true, composed: true }));
@@ -75,10 +80,18 @@ class FornoNav extends HTMLElement {
         mobileMenu.removeAttribute("hidden");
         menuBtn.setAttribute("aria-expanded", "true");
         menuBtn.setAttribute("aria-label", "Close menu");
+        iconBurger.style.opacity = "0";
+        iconBurger.style.transform = "rotate(90deg)";
+        iconClose.style.opacity = "1";
+        iconClose.style.transform = "rotate(0deg)";
       } else {
         mobileMenu.setAttribute("hidden", "");
         menuBtn.setAttribute("aria-expanded", "false");
         menuBtn.setAttribute("aria-label", "Open menu");
+        iconBurger.style.opacity = "1";
+        iconBurger.style.transform = "rotate(0deg)";
+        iconClose.style.opacity = "0";
+        iconClose.style.transform = "rotate(-90deg)";
       }
     });
 
