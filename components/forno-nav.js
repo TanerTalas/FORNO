@@ -12,7 +12,7 @@ class FornoNav extends HTMLElement {
       <header class="fixed inset-x-0 top-0 z-50 border-charcoal transition-colors duration-normal" data-nav-root>
         <div class="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 md:px-8 md:py-5 lg:px-12">
           <a href="index.html" class="flex items-center gap-3" aria-label="FORNO — home">
-            <img src="assets/img/logo/logo.svg" alt="FORNO" width="120" height="28" class="h-7 w-auto md:h-8">
+            <img src="assets/img/logo/logo.svg" alt="FORNO" width="120" height="28" draggable="false" class="h-7 w-auto md:h-8">
           </a>
 
           <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
@@ -24,7 +24,7 @@ class FornoNav extends HTMLElement {
             <button
               type="button"
               data-book-trigger
-              class="rounded-full bg-ember px-5 py-2.5 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard"
+              class="cursor-pointer bg-[#B8311A] px-5 py-2.5 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard"
             >BOOK</button>
 
             <button

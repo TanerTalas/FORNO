@@ -27,7 +27,7 @@ class FornoTestimonial extends HTMLElement {
         </p>
 
         <div class="mt-auto flex items-center gap-3 pt-2">
-          ${avatar ? `<img src="${this.#escape(avatar)}" alt="${this.#escape(name)}" width="40" height="40" loading="lazy" class="h-10 w-10 rounded-full object-cover">` : ""}
+          ${avatar ? `<img src="${this.#escape(avatar)}" alt="${this.#escape(name)}" width="40" height="40" loading="lazy" draggable="false" class="h-10 w-10 rounded-full object-cover">` : ""}
           <span class="font-body text-sm font-semibold text-cream-muted">${this.#escape(name)}</span>
         </div>
       </article>

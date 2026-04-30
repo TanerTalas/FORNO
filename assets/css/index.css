@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+img,
+video {
+  -webkit-user-drag: none;
+}
+
 .chef-section {
   --chef-height-mobile: 22rem;
   --chef-height-desktop: 38rem;
@@ -8,7 +13,6 @@
 .chef-card {
   height: var(--chef-height-mobile);
   border-radius: 0.5rem;
-  background-color: var(--color-soot);
 }
 
 @media (min-width: 768px) {
@@ -162,6 +166,17 @@
 
 .testimonials-track {
   padding-inline: 1.25rem;
+}
+
+.testimonials-track.has-focus forno-testimonial:not(.is-focused) article {
+  filter: blur(1.5px);
+  opacity: 0.45;
+  transition: filter 250ms ease-out, opacity 250ms ease-out;
+}
+
+.testimonials-track forno-testimonial.is-focused article {
+  background-color: rgba(44, 28, 20, 0.9);
+  transition: background-color 250ms ease-out;
 }
 
 @media (min-width: 768px) {

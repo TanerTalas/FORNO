@@ -45,6 +45,7 @@
         disablepictureinpicture
         disableremoteplayback
         controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+        draggable="false"
       >
         <source src="assets/img/hero/hero-video.webm" type="video/webm">
         <source src="assets/img/hero/hero-video.mp4" type="video/mp4">
@@ -56,6 +57,7 @@
           src="assets/img/hero/hero-fallback.jpg"
           alt=""
           width="1920" height="1080"
+          draggable="false"
           class="absolute inset-0 h-full w-full object-cover"
         >
       </picture>
@@ -95,6 +97,7 @@
             alt="Margherita pizza"
             width="1000" height="1000"
             loading="lazy"
+            draggable="false"
             class="absolute inset-0 h-full w-full object-contain opacity-0 will-change-transform"
           >
           <img
@@ -104,6 +107,7 @@
             alt="Pepperoni pizza"
             width="1000" height="1000"
             loading="lazy"
+            draggable="false"
             class="absolute inset-0 h-full w-full object-contain opacity-0 will-change-transform"
           >
           <img
@@ -113,6 +117,7 @@
             alt="Quattro Formaggi pizza"
             width="1000" height="1000"
             loading="lazy"
+            draggable="false"
             class="absolute inset-0 h-full w-full object-contain opacity-0 will-change-transform"
           >
         </div>
@@ -153,7 +158,8 @@
               alt="Chef Marco"
               width="1200" height="1800"
               loading="lazy"
-              class="chef-img relative z-0 block h-full w-full object-cover object-top"
+              draggable="false"
+              class="chef-img relative z-0 block h-full w-full object-cover object-top sm:object-[center_12%] md:object-top"
             >
             <div class="chef-gradient pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-soot via-bg/80 to-transparent"></div>
             <div class="absolute inset-x-0 bottom-0 z-20 px-6 pb-7 md:px-8 md:pb-9">
@@ -169,7 +175,8 @@
               alt="Chef Elena"
               width="1200" height="1800"
               loading="lazy"
-              class="chef-img relative z-0 block h-full w-full object-cover object-top"
+              draggable="false"
+              class="chef-img relative z-0 block h-full w-full object-cover object-top sm:object-[center_12%] md:object-top"
             >
             <div class="chef-gradient pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-soot via-bg/80 to-transparent"></div>
             <div class="absolute inset-x-0 bottom-0 z-20 px-6 pb-7 md:px-8 md:pb-9">
@@ -247,7 +254,7 @@
     <!-- CONTACT -->
     <section id="contact" class="relative bg-bg">
       <div class="grid grid-cols-1 md:grid-cols-2">
-        <div class="contact-map relative">
+        <div class="contact-map relative hidden md:block">
           <iframe
             title="FORNO location on map"
             src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0080%2C40.7080%2C-73.9920%2C40.7180&layer=mapnik&marker=40.7130%2C-74.0000"
@@ -323,7 +330,7 @@
             <div class="mt-6 flex items-center gap-4">
               <button
                 type="submit"
-                class="inline-flex items-center gap-2 rounded-full bg-ember px-7 py-3 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard disabled:cursor-not-allowed disabled:opacity-60"
+                class="inline-flex cursor-pointer items-center gap-2 rounded-full bg-ember px-7 py-3 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <span data-contact-submit-label>Send</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

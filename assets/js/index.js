@@ -192,6 +192,44 @@ function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
     clearTimeout(resizeId);
     resizeId = setTimeout(start, 200);
   }, { passive: true });
+
+  const focus = (card) => {
+    tween?.pause();
+    track.classList.add("has-focus");
+    card.classList.add("is-focused");
+  };
+
+  const blur = (card) => {
+    tween?.resume();
+    track.classList.remove("has-focus");
+    card.classList.remove("is-focused");
+  };
+
+  track.addEventListener("mouseover", (e) => {
+    const card = e.target.closest("forno-testimonial");
+    if (card) focus(card);
+  });
+
+  track.addEventListener("mouseout", (e) => {
+    const card = e.target.closest("forno-testimonial");
+    if (card && !card.contains(e.relatedTarget)) blur(card);
+  });
+
+  let touchCard = null;
+  track.addEventListener("touchstart", (e) => {
+    const card = e.target.closest("forno-testimonial");
+    if (!card) return;
+    if (touchCard && touchCard !== card) blur(touchCard);
+    touchCard = card;
+    focus(card);
+  }, { passive: true });
+
+  document.addEventListener("touchstart", (e) => {
+    if (touchCard && !touchCard.contains(e.target)) {
+      blur(touchCard);
+      touchCard = null;
+    }
+  }, { passive: true });
 }
 
 function setupContactForm() {

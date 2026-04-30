@@ -17,7 +17,7 @@ class FornoBookModal extends HTMLElement {
               type="button"
               data-close
               aria-label="Close"
-              class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-charcoal text-cream transition-colors duration-fast hover:bg-surface"
+              class="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-charcoal text-cream transition-colors duration-fast hover:bg-surface"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M6 6l12 12M18 6L6 18"/>
@@ -31,15 +31,22 @@ class FornoBookModal extends HTMLElement {
               <input required type="text" name="name" autocomplete="name"
                 class="rounded-md border border-charcoal bg-surface px-3 py-2.5 font-body text-sm text-cream placeholder:text-cream-muted focus:border-ember focus:outline-none">
             </label>
+            <label class="flex flex-col gap-1.5 sm:col-span-2">
+              <span class="font-body text-xs font-medium text-cream-muted">Email</span>
+              <input required type="email" name="email" autocomplete="email"
+                class="rounded-md border border-charcoal bg-surface px-3 py-2.5 font-body text-sm text-cream placeholder:text-cream-muted focus:border-ember focus:outline-none">
+            </label>
             <label class="flex flex-col gap-1.5">
               <span class="font-body text-xs font-medium text-cream-muted">Date</span>
-              <input required type="date" name="date"
+              <input required type="date" name="date" data-date
                 class="rounded-md border border-charcoal bg-surface px-3 py-2.5 font-body text-sm text-cream focus:border-ember focus:outline-none">
             </label>
             <label class="flex flex-col gap-1.5">
               <span class="font-body text-xs font-medium text-cream-muted">Time</span>
-              <input required type="time" name="time"
+              <select required name="time" data-time
                 class="rounded-md border border-charcoal bg-surface px-3 py-2.5 font-body text-sm text-cream focus:border-ember focus:outline-none">
+                <option value="">— select —</option>
+              </select>
             </label>
             <label class="flex flex-col gap-1.5 sm:col-span-2">
               <span class="font-body text-xs font-medium text-cream-muted">Party size</span>
@@ -50,11 +57,11 @@ class FornoBookModal extends HTMLElement {
 
           <div class="flex items-center justify-end gap-3">
             <button type="button" data-close
-              class="rounded-full px-4 py-2.5 font-body text-sm font-medium text-cream-muted transition-colors duration-fast hover:text-cream">
+              class="cursor-pointer rounded-full px-4 py-2.5 font-body text-sm font-medium text-cream-muted transition-colors duration-fast hover:text-cream">
               Cancel
             </button>
             <button type="submit"
-              class="rounded-full bg-ember px-5 py-2.5 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember-hover">
+              class="cursor-pointer rounded-full bg-ember px-5 py-2.5 font-body text-sm font-semibold text-cream transition-colors duration-fast hover:bg-ember-hover">
               Confirm
             </button>
           </div>
@@ -71,6 +78,10 @@ class FornoBookModal extends HTMLElement {
 
     this.dialog.addEventListener("click", (e) => {
       if (e.target === this.dialog) this.close();
+    });
+
+    this.querySelector("[data-date]").addEventListener("change", () => {
+      this.#updateTimeConstraints();
     });
 
     this.form.addEventListener("submit", (e) => {
@@ -91,8 +102,40 @@ class FornoBookModal extends HTMLElement {
     document.addEventListener("forno:book-open", () => this.open());
   }
 
+  #updateTimeConstraints() {
+    const dateInput = this.querySelector("[data-date]");
+    const timeSelect = this.querySelector("[data-time]");
+    const today = new Date().toISOString().split("T")[0];
+
+    let minMinutes = 9 * 60;
+    if (dateInput.value === today) {
+      const earliest = new Date();
+      earliest.setHours(earliest.getHours() + 3, earliest.getMinutes(), 0, 0);
+      const candidateMinutes = earliest.getHours() * 60 + earliest.getMinutes();
+      minMinutes = Math.max(minMinutes, candidateMinutes);
+    }
+    const maxMinutes = 23 * 60;
+
+    const prev = timeSelect.value;
+    timeSelect.innerHTML = '<option value="">— select —</option>';
+
+    for (let t = minMinutes; t <= maxMinutes; t += 30) {
+      const h = String(Math.floor(t / 60)).padStart(2, "0");
+      const m = String(t % 60).padStart(2, "0");
+      const val = `${h}:${m}`;
+      const opt = document.createElement("option");
+      opt.value = val;
+      opt.textContent = val;
+      if (val === prev) opt.selected = true;
+      timeSelect.appendChild(opt);
+    }
+  }
+
   open() {
     this.#lastFocus = document.activeElement;
+    const today = new Date().toISOString().split("T")[0];
+    this.querySelector("[data-date]").min = today;
+    this.#updateTimeConstraints();
     if (typeof this.dialog.showModal === "function") {
       this.dialog.showModal();
     } else {

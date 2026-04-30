@@ -7,7 +7,7 @@ class FornoFooter extends HTMLElement {
         <div class="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-6 px-5 py-10 text-center md:grid-cols-3 md:gap-4 md:px-8 md:text-left lg:px-12">
           <div class="flex justify-center md:justify-start">
             <a href="index.html" aria-label="FORNO — home">
-              <img src="assets/img/logo/logo.svg" alt="FORNO" width="110" height="26" class="h-6 w-auto">
+              <img src="assets/img/logo/logo.svg" alt="FORNO" width="110" height="26" draggable="false" class="h-6 w-auto">
             </a>
           </div>
 
