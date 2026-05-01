@@ -1,10 +1,13 @@
+/* === TAILWIND IMPORT === */
 @import "tailwindcss";
 
+/* === DRAG PREVENTION === */
 img,
 video {
   -webkit-user-drag: none;
 }
 
+/* === CHEF SECTION === */
 .chef-section {
   --chef-height-mobile: 22rem;
   --chef-height-desktop: 38rem;
@@ -21,6 +24,7 @@ video {
   }
 }
 
+/* mix-blend-mode: lighten blends the chef PNG into the dark background */
 .chef-img {
   mix-blend-mode: lighten;
 }
@@ -38,6 +42,7 @@ video {
   z-index: 0;
 }
 
+/* === TESTIMONIALS === */
 .testimonials-viewport {
   position: relative;
   width: 100%;
@@ -50,6 +55,7 @@ video {
   padding-inline: 1.25rem;
 }
 
+/* Dim non-focused cards when one is hovered */
 .testimonials-track.has-focus forno-testimonial:not(.is-focused) article {
   filter: blur(1.5px);
   opacity: 0.45;
@@ -73,6 +79,7 @@ video {
   }
 }
 
+/* === CONTACT SECTION === */
 .contact-map {
   min-height: 320px;
   background-color: var(--color-bg-elevated);

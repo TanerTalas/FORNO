@@ -1,3 +1,4 @@
+// Hero Video
 const HERO_VIDEO_CONFIG = {
   playbackRate: 1.0,
   trim: { start: 0, end: null },
@@ -37,6 +38,7 @@ function setupHeroVideo(config = HERO_VIDEO_CONFIG) {
   });
 }
 
+// Hero Intro Animation
 function setupHeroIntro() {
   const hero = document.getElementById("hero");
   if (!hero || typeof gsap === "undefined") return;
@@ -55,6 +57,7 @@ function setupHeroIntro() {
   });
 }
 
+// Hero Scroll Fade
 function setupHeroScrollFade() {
   const hero = document.getElementById("hero");
   if (!hero || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -89,6 +92,7 @@ function setupHeroScrollFade() {
   }
 }
 
+// Pizza Carousel
 const PIZZA_CONFIG = {
   hold: 3.0,
   fadeIn: 0.4,
@@ -143,6 +147,7 @@ function setupPizzaCarousel(config = PIZZA_CONFIG) {
   });
 }
 
+// Testimonials Marquee
 const TESTIMONIALS_CONFIG = {
   speed: 60,
 };
@@ -232,6 +237,7 @@ function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
   }, { passive: true });
 }
 
+// Contact Form
 function setupContactForm() {
   const form = document.querySelector("[data-contact-form]");
   if (!form) return;
@@ -291,6 +297,7 @@ function setupContactForm() {
   });
 }
 
+// Chef Fire Canvas
 const FIRE_CONFIG = {
   particleCount: 180,
   sparkCount: 50,
@@ -431,6 +438,7 @@ function setupChefFire(config = FIRE_CONFIG) {
   loop();
 }
 
+// Init
 document.addEventListener("DOMContentLoaded", () => {
   setupHeroVideo();
   setupHeroIntro();
