@@ -12,6 +12,7 @@ ScrollTrigger.config({
 
 /* === LENIS SMOOTH SCROLL === */
 const lenis = new Lenis();
+window.lenis = lenis;
 
 lenis.on("scroll", ScrollTrigger.update);
 

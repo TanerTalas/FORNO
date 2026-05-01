@@ -45,15 +45,16 @@ img { -webkit-user-drag: none; }
 
 .menu-card-label {
   margin-top: 0.625rem;
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--color-cream);
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .menu-card-label {
-    font-size: 1rem;
+    font-size: 1.875rem;
   }
 }
 
@@ -243,7 +244,7 @@ img { -webkit-user-drag: none; }
 }
 
 .menu-modal-cat-title {
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   color: var(--color-cream);
   line-height: 1;

@@ -165,6 +165,7 @@ function openModal(categoryId) {
   });
 
   document.body.style.overflow = "hidden";
+  if (window.lenis) window.lenis.stop();
 
   const target = document.getElementById(`modal-${categoryId}`);
   if (target) {
@@ -188,6 +189,7 @@ function closeModal() {
   modal.addEventListener("transitionend", onEnd, { once: true });
 
   document.body.style.overflow = "";
+  if (window.lenis) window.lenis.start();
 
   if (previouslyFocused) previouslyFocused.focus();
 }
