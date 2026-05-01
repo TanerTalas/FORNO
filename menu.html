@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FORNO menu. Wood-fired pizza, made fresh.">
+  <meta name="description" content="FORNO menu. Pizzas, starters, pastas and more.">
   <meta name="theme-color" content="#0F0A08">
-  <title>Menu | FORNO</title>
+  <title>Menu — FORNO</title>
 
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png">
@@ -20,9 +20,6 @@
   <link rel="stylesheet" href="assets/css/output.css">
   <link rel="stylesheet" href="assets/css/menu.css">
 
-  <script src="assets/js/vendor/gsap.min.js" defer></script>
-  <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="assets/js/vendor/lenis.min.js" defer></script>
   <script src="assets/js/shared.js" defer></script>
   <script src="components/forno-nav.js" defer></script>
   <script src="components/forno-footer.js" defer></script>
@@ -32,10 +29,48 @@
 <body class="bg-bg text-cream font-body">
   <forno-nav></forno-nav>
 
-  <main></main>
+  <main>
+    <section id="menu" class="relative bg-bg pt-32 pb-24 md:pt-40 md:pb-32">
+      <div class="mx-auto max-w-[1280px] px-5 md:px-8 lg:px-12 xl:px-16">
+        <p class="font-accent text-2xl text-mustard md:text-3xl">Everything we make</p>
+        <h1 class="mt-2 font-display leading-[0.95] text-cream" style="font-size: clamp(2.5rem, 7vw, 6rem);">
+          Menu
+        </h1>
+
+        <div
+          id="menu-grid"
+          class="mt-12 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-3 md:gap-6"
+          role="list"
+        ></div>
+      </div>
+    </section>
+  </main>
 
   <forno-footer></forno-footer>
-
   <forno-book-modal></forno-book-modal>
+
+  <!-- MENU MODAL -->
+  <div
+    id="menu-modal" 
+    role="dialog"
+    aria-modal="true"
+    aria-label="Full menu"
+    class="menu-modal"
+    hidden
+  >
+    <div class="menu-modal-inner">
+      <div class="menu-modal-header">
+        <span class="font-display text-cream" style="font-size: clamp(1.5rem, 4vw, 2.25rem);">Menu</span>
+        <button id="menu-modal-close" aria-label="Close menu" class="menu-modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div id="menu-modal-content" class="menu-modal-content"></div>
+    </div>
+  </div>
+
+  <div id="menu-modal-backdrop" class="menu-modal-backdrop" hidden aria-hidden="true"></div>
 </body>
 </html>

@@ -1,2 +1,295 @@
 /* === TAILWIND IMPORT === */
 @import "tailwindcss";
+
+/* === DRAG PREVENTION === */
+img { -webkit-user-drag: none; }
+
+/* ── Category grid cards ───────────────────────────────────────────────────── */
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+.menu-card-img-wrap {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 2px solid var(--color-charcoal);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.menu-card:hover .menu-card-img-wrap,
+.menu-card:focus-visible .menu-card-img-wrap {
+  border-color: var(--color-ember);
+}
+
+.menu-card:focus-visible {
+  outline: 2px solid var(--color-mustard);
+  outline-offset: 3px;
+}
+
+.menu-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.menu-card-img-fallback {
+  background-color: var(--color-surface);
+}
+
+.menu-card-label {
+  margin-top: 0.625rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-cream);
+}
+
+@media (min-width: 768px) {
+  .menu-card-label {
+    font-size: 1rem;
+  }
+}
+
+/* ── Modal backdrop ─────────────────────────────────────────────────────────── */
+.menu-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.menu-modal-backdrop.is-open {
+  opacity: 1;
+}
+
+/* ── Modal ──────────────────────────────────────────────────────────────────── */
+.menu-modal {
+  position: fixed;
+  inset: 12px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+}
+
+.menu-modal.is-open {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+@media (min-width: 768px) {
+  .menu-modal {
+    inset: 24px;
+  }
+}
+
+.menu-modal-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-charcoal);
+  overflow: hidden;
+}
+
+/* ── Modal sticky header ────────────────────────────────────────────────────── */
+.menu-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background-color: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-charcoal);
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .menu-modal-header {
+    padding: 1.25rem 2rem;
+  }
+}
+
+.menu-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-cream-muted);
+  background: transparent;
+  border: 1px solid var(--color-charcoal);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.menu-modal-close:hover {
+  color: var(--color-cream);
+  border-color: var(--color-ember);
+}
+
+.menu-modal-close:focus-visible {
+  outline: 2px solid var(--color-mustard);
+  outline-offset: 2px;
+}
+
+/* ── Modal scrollable content ───────────────────────────────────────────────── */
+.menu-modal-content {
+  overflow-y: auto;
+  flex: 1;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-charcoal) transparent;
+}
+
+.menu-modal-content:hover {
+  scrollbar-color: var(--color-ember) transparent;
+}
+
+.menu-modal-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--color-charcoal);
+  border-radius: 0;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.menu-modal-content:hover::-webkit-scrollbar-thumb {
+  background-color: var(--color-ember);
+}
+
+/* ── Category block ─────────────────────────────────────────────────────────── */
+.menu-modal-block {
+  padding: 2rem 1.25rem;
+  border-bottom: 1px solid var(--color-charcoal);
+}
+
+.menu-modal-block:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .menu-modal-block {
+    padding: 2.5rem 2rem;
+  }
+}
+
+.menu-modal-block-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .menu-modal-block-inner {
+    flex-direction: row;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+}
+
+/* ── Block image ─────────────────────────────────────────────────────────────── */
+.menu-modal-block-img {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 100%;
+  background-color: var(--color-surface);
+}
+
+@media (min-width: 768px) {
+  .menu-modal-block-img {
+    width: 33.333%;
+  }
+}
+
+.menu-modal-block-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Block body ──────────────────────────────────────────────────────────────── */
+.menu-modal-block-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-modal-cat-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-cream);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Item list ───────────────────────────────────────────────────────────────── */
+.menu-modal-item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-modal-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-charcoal);
+}
+
+.menu-modal-item.last {
+  border-bottom: none;
+}
+
+.menu-modal-item-name {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-cream);
+}
+
+.menu-modal-item-price {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-mustard);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .menu-modal,
+  .menu-modal-backdrop {
+    transition: none;
+  }
+}
