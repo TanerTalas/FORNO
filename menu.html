@@ -1,32 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    FORNO — Wood-fired pizza restaurant (portfolio project)
+    Author : Taner Talas
+    GitHub : https://github.com/tanertalas/FORNO
+    Live   : https://tanertalas.github.io/FORNO/
+
+    Stack  : Tailwind CSS v4 · Vanilla HTML/JS · GSAP + ScrollTrigger · Lenis
+    Page   : Menu (menu.html)
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FORNO menu. Pizzas, starters, pastas and more.">
+  <meta name="author" content="Taner Talas">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0F0A08">
-  <title>Menu — FORNO</title>
+  <title>Menu | FORNO</title>
+  <link rel="canonical" href="https://tanertalas.github.io/FORNO/menu.html">
 
+  <!-- Share -->
+  <meta property="og:title" content="Menu — FORNO" />
+  <meta property="og:description" content="The full lineup. Pizzas, starters, pastas, and drinks. No fillers, no fluff." />
+  <meta property="og:image" content="https://tanertalas.github.io/FORNO/assets/img/banner.png" />
+  <meta property="og:url" content="https://tanertalas.github.io/FORNO/menu.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png">
   <link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
   <link rel="manifest" href="assets/img/favicon/site.webmanifest">
 
+  <!-- Fonts — Bagel Fat One (display), Caveat (accent), Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Caveat:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Styles — Tailwind compiled output + page-specific overrides -->
   <link rel="stylesheet" href="assets/css/output.css">
   <link rel="stylesheet" href="assets/css/menu.css">
 
+  <!-- Vendor — GSAP animation library, ScrollTrigger plugin, Lenis smooth scroll -->
   <script src="assets/js/vendor/gsap.min.js" defer></script>
   <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="assets/js/vendor/lenis.min.js" defer></script>
+
+  <!-- Core — GSAP defaults, ScrollTrigger config, global utilities -->
   <script src="assets/js/shared.js" defer></script>
+
+  <!-- Components — Web Components (custom elements) -->
   <script src="components/forno-nav.js" defer></script>
   <script src="components/forno-footer.js" defer></script>
   <script src="components/forno-book-modal.js" defer></script>
+
+  <!-- Page — menu data, category grid, item modal interactions -->
   <script src="assets/js/menu.js" defer></script>
 </head>
 <body class="bg-bg text-cream font-body">
