@@ -169,13 +169,14 @@ function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
   });
 
   let tween;
+  let lastDistance = 0;
 
-  const start = () => {
-    if (tween) tween.kill();
-    gsap.set(track, { x: 0 });
-
+  const build = () => {
     const distance = track.scrollWidth / 2;
     if (distance <= 0) return;
+
+    const progress = tween ? tween.progress() : 0;
+    if (tween) tween.kill();
 
     const duration = distance / config.speed;
     tween = gsap.to(track, {
@@ -184,18 +185,29 @@ function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
       ease: "none",
       repeat: -1,
     });
+    tween.progress(progress);
+    lastDistance = distance;
+  };
+
+  const rebuildIfWidthChanged = () => {
+    const distance = track.scrollWidth / 2;
+    if (Math.abs(distance - lastDistance) < 1) return;
+    build();
   };
 
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(start);
+    document.fonts.ready.then(build);
   } else {
-    start();
+    build();
   }
 
   let resizeId;
+  let lastWidth = window.innerWidth;
   window.addEventListener("resize", () => {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
     clearTimeout(resizeId);
-    resizeId = setTimeout(start, 200);
+    resizeId = setTimeout(rebuildIfWidthChanged, 200);
   }, { passive: true });
 
   const focus = (card) => {
@@ -219,22 +231,6 @@ function setupTestimonialsMarquee(config = TESTIMONIALS_CONFIG) {
     const card = e.target.closest("forno-testimonial");
     if (card && !card.contains(e.relatedTarget)) blur(card);
   });
-
-  let touchCard = null;
-  track.addEventListener("touchstart", (e) => {
-    const card = e.target.closest("forno-testimonial");
-    if (!card) return;
-    if (touchCard && touchCard !== card) blur(touchCard);
-    touchCard = card;
-    focus(card);
-  }, { passive: true });
-
-  document.addEventListener("touchstart", (e) => {
-    if (touchCard && !touchCard.contains(e.target)) {
-      blur(touchCard);
-      touchCard = null;
-    }
-  }, { passive: true });
 }
 
 // Contact Form
